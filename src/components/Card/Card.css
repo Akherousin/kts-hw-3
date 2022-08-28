@@ -1,0 +1,76 @@
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+  width: 35rem;
+  height: 7.5rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.card header {
+  width: 50%;
+  margin-left: calc((7.5rem - var(--card-icon-size)) / 2);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: calc((7.5rem - var(--card-icon-size)) / 2 - 0.4rem);
+  grid-template-areas:
+    "logo title"
+    "logo subtitle";
+}
+
+.card_logo {
+  width: var(--card-icon-size);
+  aspect-ratio: 1;
+  grid-area: logo;
+}
+
+.card_title {
+  font-family: "Circular Std";
+  font-style: normal;
+  font-weight: 450;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  grid-area: title;
+}
+
+.card_subtitle {
+  font-family: "Circular Std";
+  font-style: normal;
+  font-weight: 450;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  grid-area: subtitle;
+}
+
+.card footer {
+  height: var(--card-icon-size);
+  text-align: end;
+  margin-left: auto;
+  margin-right: calc((7.5rem - var(--card-icon-size)) / 2);
+}
+
+.card_price {
+  font-family: "Circular Std";
+  font-style: normal;
+  font-weight: 450;
+  font-size: 1.6rem;
+  line-height: 2rem;
+}
+
+.card_change {
+  font-family: "Circular Std";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5rem;
+
+  color: #21bf73;
+}
+
+.card_change-decrease {
+  color: #d90429;
+}
