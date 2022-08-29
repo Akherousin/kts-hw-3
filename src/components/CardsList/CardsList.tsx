@@ -3,7 +3,7 @@ import { Card } from "@components/Card/Card";
 import { Loader, LoaderSize } from "@components/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import coingecko from "@utils/coingecko";
-import "./CardsList.css";
+import "@styles/components/CardsList/CardsList.scss";
 import { useNavigate } from "react-router-dom";
 
 export interface ICoins {

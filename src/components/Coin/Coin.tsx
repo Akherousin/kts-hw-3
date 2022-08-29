@@ -140,14 +140,14 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
         <p className="coin_price">{formatCurrentPrice(currency, curPrice)}</p>
         <p
           className={classNames({
-            "coin-price-change": true,
-            "coin-price-change-decrease": priceChange < 0,
+            coin_pricechange: true,
+            "coin_pricechange-decrease": priceChange < 0,
           })}
         >
           {formatPriceChange(priceChange, 3)}
           {` (${formatPriceChange(priceChangePercent, 2)}%)`}
         </p>
-        <div className="graph-placeholder"></div>
+        <div className="graph_placeholder"></div>
       </main>
     </article>
   );

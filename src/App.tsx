@@ -1,20 +1,19 @@
 import CoinPage from "@pages/CoinPage/CoinPage";
-import CardsList from "@components/CardsList/CardsList";
+
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AllCoinsPage from "@pages/AllCoinsPage/AllCoinsPage";
 
 function App(): JSX.Element {
   return (
     <main>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<CardsList vsCurrency="usd" perPage={10} />}
-          />
+          <Route path="/" element={<AllCoinsPage />} />
           <Route path="/coin">
             <Route path=":id" element={<CoinPage vsCurrency="usd" />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </main>

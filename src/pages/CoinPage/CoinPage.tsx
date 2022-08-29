@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Coin from "@components/Coin/Coin";
 import { Button, ButtonColor } from "@components/Button/Button";
-import "./CoinPage.css";
+import "@styles/pages/CoinPage/CoinPage.scss";
 import { useParams } from "react-router-dom";
 
 export interface CoinPageProps {
