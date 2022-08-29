@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import coingecko from "@utils/coingecko";
-import "./Coin.css";
+import "@styles/components/Coin/Coin.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
@@ -101,7 +101,7 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
 
   return (
     <article className="coin">
-      <header className="coin-header">
+      <header className="coin_header">
         <button
           type="button"
           className="btn btn-return"
@@ -118,9 +118,9 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
             />
           </svg>
         </button>
-        <img className="header-logo" src={imgSmall} />
-        <h1 className="coin-name">{name}</h1>
-        <p className="coin-subtitle">{`(${symbol})`}</p>
+        <img className="coin_logo" src={imgSmall} />
+        <h1 className="coin_name">{name}</h1>
+        <p className="coin_subtitle">{`(${symbol})`}</p>
 
         <button type="button" className="btn btn-star">
           <svg
@@ -136,8 +136,8 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
         </button>
       </header>
 
-      <main className="coin-main">
-        <p className="coin-price">{formatCurrentPrice(currency, curPrice)}</p>
+      <main className="coin_main">
+        <p className="coin_price">{formatCurrentPrice(currency, curPrice)}</p>
         <p
           className={classNames({
             "coin-price-change": true,

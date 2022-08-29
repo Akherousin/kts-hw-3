@@ -1,4 +1,4 @@
-import "./Loader.css";
+import "@styles/components/Loader/Loader.scss";
 import React from "react";
 import classNames from "classnames";
 

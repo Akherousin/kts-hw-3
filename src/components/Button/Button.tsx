@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "@styles/components/Button/Button.scss";
 import classNames from "classnames";
 import { Loader } from "../Loader/Loader";
 
