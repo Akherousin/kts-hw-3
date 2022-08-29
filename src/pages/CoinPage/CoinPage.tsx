@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Coin from "@components/Coin/Coin";
 import { Button, ButtonColor } from "@components/Button/Button";
-import "@styles/pages/CoinPage/CoinPage.scss";
+import styles from "@styles/pages/CoinPage/CoinPage.module.scss";
 import { useParams } from "react-router-dom";
 
 export interface CoinPageProps {
@@ -32,7 +32,7 @@ function CoinPage({ vsCurrency }: CoinPageProps): JSX.Element {
   return (
     <>
       <Coin id={id} currency={vsCurrency} period={period} />
-      <section className="buttons">
+      <section className={styles.buttons}>
         <Button
           color={getBtnColor("1h")}
           onClick={(e) => handleButtonClick(e, "1h")}

@@ -1,4 +1,4 @@
-import "@styles/components/Loader/Loader.scss";
+import styles from "@styles/components/Loader/Loader.module.scss";
 import React from "react";
 import classNames from "classnames";
 
@@ -22,7 +22,9 @@ export const Loader = ({
   return (
     <>
       {loading && (
-        <div className={classNames(className, `loader_size-${size}`)}></div>
+        <div
+          className={styles[classNames(className, `loader_size-${size}`)]}
+        ></div>
       )}
     </>
   );

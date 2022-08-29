@@ -1,5 +1,5 @@
 import React from "react";
-import "@styles/components/Button/Button.scss";
+import styles from "@styles/components/Button/Button.module.scss";
 import classNames from "classnames";
 import { Loader } from "../Loader/Loader";
 
@@ -26,10 +26,10 @@ export function Button({
   if (loading) disabled = true;
 
   const buttonClass = classNames(
-    "button",
+    styles.button,
     className,
-    `button_color-${color}`,
-    `${(disabled ?? false) || loading ? "button_disabled" : ""}`
+    styles[`button_color-${color}`],
+    styles[`${(disabled ?? false) || loading ? "button_disabled" : ""}`]
   );
 
   return (

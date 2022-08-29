@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import coingecko from "@utils/coingecko";
-import "@styles/components/Coin/Coin.scss";
+import styles from "@styles/components/Coin/Coin.module.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
@@ -100,11 +100,11 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
   const navigate = useNavigate();
 
   return (
-    <article className="coin">
-      <header className="coin_header">
+    <article className={styles.coin}>
+      <header className={styles.coin_header}>
         <button
           type="button"
-          className="btn btn-return"
+          className={styles["btn-return"]}
           onClick={() => navigate("/")}
         >
           <svg
@@ -118,11 +118,11 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
             />
           </svg>
         </button>
-        <img className="coin_logo" src={imgSmall} />
-        <h1 className="coin_name">{name}</h1>
-        <p className="coin_subtitle">{`(${symbol})`}</p>
+        <img className={styles.coin_logo} src={imgSmall} />
+        <h1 className={styles.coin_name}>{name}</h1>
+        <p className={styles.coin_subtitle}>{`(${symbol})`}</p>
 
-        <button type="button" className="btn btn-star">
+        <button type="button" className={styles["btn-star"]}>
           <svg
             viewBox="0 0 17 15"
             fill="none"
@@ -136,18 +136,24 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
         </button>
       </header>
 
-      <main className="coin_main">
-        <p className="coin_price">{formatCurrentPrice(currency, curPrice)}</p>
+      <main className={styles.coin_main}>
+        <p className={styles.coin_price}>
+          {formatCurrentPrice(currency, curPrice)}
+        </p>
         <p
-          className={classNames({
-            coin_pricechange: true,
-            "coin_pricechange-decrease": priceChange < 0,
-          })}
+          className={
+            styles[
+              classNames({
+                coin_pricechange: true,
+                "coin_pricechange-decrease": priceChange < 0,
+              })
+            ]
+          }
         >
           {formatPriceChange(priceChange, 3)}
           {` (${formatPriceChange(priceChangePercent, 2)}%)`}
         </p>
-        <div className="graph_placeholder"></div>
+        <div className={styles.graph_placeholder}></div>
       </main>
     </article>
   );

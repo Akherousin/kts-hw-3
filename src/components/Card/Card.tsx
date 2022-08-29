@@ -1,5 +1,5 @@
 import React from "react";
-import "@styles/components/Card/Card.scss";
+import styles from "@styles/components/Card/Card.module.scss";
 import classNames from "classnames";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 
@@ -29,22 +29,18 @@ export const Card = ({
     [currentPrice, priceChange, currency] = content;
   }
 
-  // Changes the formating of card depending on the language of the user
-
-  // const formatterCurrency = formatPrices(currency);
-
   if (typeof currentPrice === "number" && typeof priceChange === "number") {
     currentPrice = formatCurrentPrice(currency, currentPrice);
     priceChange = formatPriceChange(priceChange, 2);
   }
 
   return (
-    <article className="card" onClick={onClick}>
+    <article className={styles.card} onClick={onClick}>
       <header>
-        <img src={image} alt={`logo`} className="card_logo" />
+        <img src={image} alt={`logo`} className={styles.card_logo} />
 
-        <h2 className="card_title">{title}</h2>
-        <p className="card_subtitle">{subtitle}</p>
+        <h2 className={styles.card_title}>{title}</h2>
+        <p className={styles.card_subtitle}>{subtitle}</p>
       </header>
 
       <svg
@@ -60,12 +56,16 @@ export const Card = ({
         />
       </svg>
       <footer>
-        <p className="card_price">{currentPrice}</p>
+        <p className={styles.card_price}>{currentPrice}</p>
         <p
-          className={classNames({
-            card_change: true,
-            "card_change-decrease": Number(priceChange) < 0,
-          })}
+          className={
+            styles[
+              classNames({
+                card_change: true,
+                "card_change-decrease": Number(priceChange) < 0,
+              })
+            ]
+          }
         >
           {priceChange}%
         </p>

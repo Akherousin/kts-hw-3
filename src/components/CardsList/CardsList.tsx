@@ -3,7 +3,7 @@ import { Card } from "@components/Card/Card";
 import { Loader, LoaderSize } from "@components/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import coingecko from "@utils/coingecko";
-import "@styles/components/CardsList/CardsList.scss";
+import styles from "@styles/components/CardsList/CardsList.module.scss";
 import { useNavigate } from "react-router-dom";
 
 export interface ICoins {
@@ -92,7 +92,7 @@ function CardsList({ vsCurrency, perPage }: CardListProps): JSX.Element {
         dataLength={coins.length}
         hasMore={true}
         next={fetchDataOnScroll}
-        className="cards-list"
+        className={styles.cards_list}
         loader={<Loader size={LoaderSize.m} />}
         scrollThreshold={0.7}
       >
