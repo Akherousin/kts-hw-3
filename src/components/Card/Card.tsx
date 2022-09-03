@@ -5,13 +5,9 @@ import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 
 export interface CardProps {
   image: string;
-
   title: React.ReactNode;
-
   subtitle: React.ReactNode;
-
   content?: React.ReactNode;
-
   onClick?: React.MouseEventHandler;
 }
 

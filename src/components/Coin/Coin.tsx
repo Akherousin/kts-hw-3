@@ -15,9 +15,7 @@ export interface CoinData {
   name: string;
   symbol: string;
   imgSmall: string;
-
   curPrice: number;
-
   priceChange1hPercent: number;
   priceChange24hPercent: number;
   priceChange7dPercent: number;
