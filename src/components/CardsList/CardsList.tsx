@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Card } from "@components/Card/Card";
-import { Loader, LoaderSize } from "@components/Loader/Loader";
+import { Card } from "@components/Card";
+import { Loader, LoaderSize } from "@components/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import coingecko from "@utils/coingecko";
 import styles from "./CardsList.module.scss";

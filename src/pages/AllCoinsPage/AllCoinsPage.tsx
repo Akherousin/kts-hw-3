@@ -1,4 +1,4 @@
-import CardsList from "@components/CardsList/CardsList";
+import CardsList from "@components/CardsList";
 import React from "react";
 import styles from "./AllCoinsPage.module.scss";
 

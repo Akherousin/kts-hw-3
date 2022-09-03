@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Coin from "@components/Coin/Coin";
-import { Button, ButtonColor } from "@components/Button/Button";
+import Coin from "@components/Coin";
+import { Button, ButtonColor } from "@components/Button";
 import styles from "./CoinPage.module.scss";
 import { useParams } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
-import { Loader } from "../Loader/Loader";
+import { Loader } from "@components/Loader";
 
 export enum ButtonColor {
   primary = "primary",

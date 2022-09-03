@@ -4,7 +4,7 @@ import styles from "./Coin.module.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
-import { Loader } from "@components/Loader/Loader";
+import { Loader } from "@components/Loader";
 
 export interface CoinProps {
   id: string;
