@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import coingecko from "@utils/coingecko";
-import styles from "@styles/components/Coin/Coin.module.scss";
+import styles from "./Coin.module.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";

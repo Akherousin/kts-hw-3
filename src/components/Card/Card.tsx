@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@styles/components/Card/Card.module.scss";
+import styles from "./Card.module.scss";
 import classNames from "classnames";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 

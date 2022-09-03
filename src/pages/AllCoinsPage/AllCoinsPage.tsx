@@ -1,6 +1,6 @@
 import CardsList from "@components/CardsList/CardsList";
 import React from "react";
-import styles from "@styles/pages/AllCoinsPage/AllCoinsPage.module.scss";
+import styles from "./AllCoinsPage.module.scss";
 
 function AllCoinsPage(): JSX.Element {
   return (
