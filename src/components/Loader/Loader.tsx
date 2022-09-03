@@ -19,8 +19,6 @@ export const Loader = ({
   size = LoaderSize.m,
   className = "loader",
 }: LoaderProps): JSX.Element => {
-  console.log(styles);
-
   return (
     <>
       {loading && (
