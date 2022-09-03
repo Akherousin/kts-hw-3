@@ -37,11 +37,8 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
     priceChange1yPercent: 0,
   });
 
-  const [curPeriod, setCurPeriod] = useState(period);
-
   useEffect(() => {
     async function fetchCoinData(): Promise<any> {
-      setCurPeriod(period);
       const response = await coingecko.get(`/coins/${id}`, {
         params: { tickers: false },
       });
@@ -83,15 +80,11 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
       });
     }
     fetchCoinData().catch((err) => err);
-  }, []);
-
-  useEffect(() => {
-    setCurPeriod(period);
   }, [period]);
 
   const { name, symbol, imgSmall, curPrice } = coinData;
   const priceChangePercent =
-    coinData[`priceChange${curPeriod}Percent` as keyof CoinData];
+    coinData[`priceChange${period}Percent` as keyof CoinData];
   const priceChange =
     (100 * curPrice) / (100 - Number(priceChangePercent)) - curPrice;
 
