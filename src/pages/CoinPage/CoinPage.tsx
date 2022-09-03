@@ -10,6 +10,19 @@ export interface CoinPageProps {
 
 export type Periods = "1h" | "24h" | "7d" | "30d" | "1y";
 
+interface ButtonData {
+  period: Periods;
+  renderedPeriod: string;
+}
+
+const buttons: ButtonData[] = [
+  { period: "1h", renderedPeriod: "1 H" },
+  { period: "24h", renderedPeriod: "24 H" },
+  { period: "7d", renderedPeriod: "1 W" },
+  { period: "30d", renderedPeriod: "1 M" },
+  { period: "1y", renderedPeriod: "1 Y" },
+];
+
 function CoinPage({ vsCurrency }: CoinPageProps): JSX.Element {
   const { id } = useParams();
   if (typeof id !== "string") return <></>;
@@ -24,41 +37,20 @@ function CoinPage({ vsCurrency }: CoinPageProps): JSX.Element {
     return period === btn ? ButtonColor.primary : ButtonColor.secondary;
   }
 
+  const renderedButtons = buttons.map((button) => (
+    <Button
+      color={getBtnColor(button.period)}
+      onClick={() => handleButtonClick(button.period)}
+      key={button.period + "-btn"}
+    >
+      {button.renderedPeriod}
+    </Button>
+  ));
+
   return (
     <>
       <Coin id={id} currency={vsCurrency} period={period} />
-      <section className={styles.buttons}>
-        <Button
-          color={getBtnColor("1h")}
-          onClick={() => handleButtonClick("1h")}
-        >
-          1 H
-        </Button>
-        <Button
-          color={getBtnColor("24h")}
-          onClick={() => handleButtonClick("24h")}
-        >
-          24 H
-        </Button>
-        <Button
-          color={getBtnColor("7d")}
-          onClick={() => handleButtonClick("7d")}
-        >
-          1 W
-        </Button>
-        <Button
-          color={getBtnColor("30d")}
-          onClick={() => handleButtonClick("30d")}
-        >
-          1 M
-        </Button>
-        <Button
-          color={getBtnColor("1y")}
-          onClick={() => handleButtonClick("1y")}
-        >
-          1 Y
-        </Button>
-      </section>
+      <section className={styles.buttons}>{renderedButtons}</section>
     </>
   );
 }
