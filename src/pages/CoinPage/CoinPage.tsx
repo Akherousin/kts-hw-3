@@ -8,13 +8,15 @@ export interface CoinPageProps {
   vsCurrency: string;
 }
 
+export type Periods = "1h" | "24h" | "7d" | "30d" | "1y";
+
 function CoinPage({ vsCurrency }: CoinPageProps): JSX.Element {
   const { id } = useParams();
   if (typeof id !== "string") return <></>;
 
-  const [period, setPeriod] = useState("1h");
+  const [period, setPeriod] = useState<Periods>("1h");
 
-  const handleButtonClick = (period: string): void => {
+  const handleButtonClick = (period: Periods): void => {
     setPeriod(period);
   };
 
