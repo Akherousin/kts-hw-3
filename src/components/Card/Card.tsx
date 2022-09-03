@@ -18,6 +18,8 @@ export const Card = ({
   content,
   onClick,
 }: CardProps): JSX.Element => {
+  console.log(styles);
+
   let currentPrice: number | null | string = null;
   let priceChange: number | null | string = null;
   let currency: string = "usd";
@@ -54,14 +56,10 @@ export const Card = ({
       <footer>
         <p className={styles.card_price}>{currentPrice}</p>
         <p
-          className={
-            styles[
-              classNames({
-                card_change: true,
-                "card_change-decrease": Number(priceChange) < 0,
-              })
-            ]
-          }
+          className={classNames({
+            [styles.card_change]: true,
+            [styles[`card_change-decrease`]]: Number(priceChange) < 0,
+          })}
         >
           {priceChange}%
         </p>
