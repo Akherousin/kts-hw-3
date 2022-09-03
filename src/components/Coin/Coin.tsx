@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import coingecko from "@utils/coingecko";
 import styles from "./Coin.module.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { Loader } from "@components/Loader/Loader";
 
 export interface CoinProps {
   id: string;
@@ -36,6 +37,8 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
     priceChange30dPercent: 0,
     priceChange1yPercent: 0,
   });
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCoinData(): Promise<any> {
@@ -78,23 +81,25 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
         priceChange30dPercent,
         priceChange1yPercent,
       });
+      setLoading(false);
     }
+
     fetchCoinData().catch((err) => err);
   }, [period]);
 
   const { name, symbol, imgSmall, curPrice } = coinData;
 
-  const priceChangePercent = useMemo(() => {
-    return coinData[`priceChange${period}Percent` as keyof CoinData];
-  }, [period]);
+  const priceChangePercent =
+    coinData[`priceChange${period}Percent` as keyof CoinData];
 
-  const priceChange = useMemo(() => {
-    return (100 * curPrice) / (100 - Number(priceChangePercent)) - curPrice;
-  }, [priceChangePercent]);
+  const priceChange =
+    (100 * curPrice) / (100 - Number(priceChangePercent)) - curPrice;
 
   const navigate = useNavigate();
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <article className={styles.coin}>
       <header className={styles.coin_header}>
         <button
@@ -136,14 +141,10 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
           {formatCurrentPrice(currency, curPrice)}
         </p>
         <p
-          className={
-            styles[
-              classNames({
-                coin_pricechange: true,
-                "coin_pricechange-decrease": priceChange < 0,
-              })
-            ]
-          }
+          className={classNames({
+            [styles.coin_pricechange]: true,
+            [styles[`coin_pricechange-decrease`]]: priceChange < 0,
+          })}
         >
           {formatPriceChange(priceChange, 3)}
           {` (${formatPriceChange(priceChangePercent, 2)}%)`}
