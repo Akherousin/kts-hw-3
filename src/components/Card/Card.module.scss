@@ -14,6 +14,7 @@
     width: $card-icon-size;
     aspect-ratio: 1;
     grid-area: logo;
+    place-self: center;
   }
 
   &_title {
