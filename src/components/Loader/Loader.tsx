@@ -19,11 +19,16 @@ export const Loader = ({
   size = LoaderSize.m,
   className = "loader",
 }: LoaderProps): JSX.Element => {
+  console.log(styles);
+
   return (
     <>
       {loading && (
         <div
-          className={styles[classNames(className, `loader_size-${size}`)]}
+          className={classNames(
+            styles[className],
+            styles[`loader_size-${size}`]
+          )}
         ></div>
       )}
     </>
