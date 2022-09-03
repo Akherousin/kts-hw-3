@@ -32,15 +32,21 @@ export const Card = ({
     priceChange = formatPriceChange(priceChange, 2);
   }
 
-  return (
-    <article className={styles.card} onClick={onClick}>
-      <header>
-        <img src={image} alt={`logo`} className={styles.card_logo} />
-
-        <h2 className={styles.card_title}>{title}</h2>
-        <p className={styles.card_subtitle}>{subtitle}</p>
-      </header>
-
+  const renderedGraph =
+    Number(priceChange) < 0 ? (
+      <svg
+        width="52"
+        height="28"
+        viewBox="0 0 52 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 24.8448L6.60748 20.9655L13.6168 27L18.2897 4.15517L27.1682 19.2414L31.3738 13.6379V4.15517L37.9159 9.75862L42.1215 2L51 17.0862"
+          stroke="#D90429"
+        />
+      </svg>
+    ) : (
       <svg
         width="52"
         height="29"
@@ -53,6 +59,19 @@ export const Card = ({
           stroke="#21BF73"
         />
       </svg>
+    );
+
+  return (
+    <article className={styles.card} onClick={onClick}>
+      <header>
+        <img src={image} alt={`logo`} className={styles.card_logo} />
+
+        <h2 className={styles.card_title}>{title}</h2>
+        <p className={styles.card_subtitle}>{subtitle}</p>
+      </header>
+
+      {renderedGraph}
+
       <footer>
         <p className={styles.card_price}>{currentPrice}</p>
         <p
