@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import coingecko from "@utils/coingecko";
 import styles from "./Coin.module.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
@@ -83,10 +83,14 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
   }, [period]);
 
   const { name, symbol, imgSmall, curPrice } = coinData;
-  const priceChangePercent =
-    coinData[`priceChange${period}Percent` as keyof CoinData];
-  const priceChange =
-    (100 * curPrice) / (100 - Number(priceChangePercent)) - curPrice;
+
+  const priceChangePercent = useMemo(() => {
+    return coinData[`priceChange${period}Percent` as keyof CoinData];
+  }, [period]);
+
+  const priceChange = useMemo(() => {
+    return (100 * curPrice) / (100 - Number(priceChangePercent)) - curPrice;
+  }, [priceChangePercent]);
 
   const navigate = useNavigate();
 
