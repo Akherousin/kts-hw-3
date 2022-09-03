@@ -1,6 +1,7 @@
 @import "@styles/general/variables.scss";
 
 .loader {
+  margin: 0 auto;
   border: 6px solid transparent;
   border-top-color: $loader-color;
   border-bottom-color: $loader-color;
