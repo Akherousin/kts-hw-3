@@ -1,18 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import coingecko from "@utils/coingecko";
 
-export interface CoinData {
-  name: string;
-  symbol: string;
-  imgSmall: string;
-  curPrice: number;
-  priceChange1hPercent: number;
-  priceChange24hPercent: number;
-  priceChange7dPercent: number;
-  priceChange30dPercent: number;
-  priceChange1yPercent: number;
-}
-
 class CoinStore {
   loading: boolean = true;
   name = "";
