@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import coingecko from "@utils/coingecko";
+import React, { useEffect } from "react";
 import styles from "./Coin.module.scss";
 import { formatCurrentPrice, formatPriceChange } from "@utils/formatPrices";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { Loader } from "@components/Loader";
+import coinStore from "@stores/CoinStore";
+import { observer } from "mobx-react-lite";
 
 export interface CoinProps {
   id: string;
@@ -12,88 +13,15 @@ export interface CoinProps {
   period: string;
 }
 
-export interface CoinData {
-  name: string;
-  symbol: string;
-  imgSmall: string;
-  curPrice: number;
-  priceChange1hPercent: number;
-  priceChange24hPercent: number;
-  priceChange7dPercent: number;
-  priceChange30dPercent: number;
-  priceChange1yPercent: number;
-}
-
 function Coin({ id, currency, period }: CoinProps): JSX.Element {
-  const [coinData, setCoinData] = useState<CoinData>({
-    name: "",
-    symbol: "",
-    imgSmall: "",
-    curPrice: 0,
-
-    priceChange1hPercent: 0,
-    priceChange24hPercent: 0,
-    priceChange7dPercent: 0,
-    priceChange30dPercent: 0,
-    priceChange1yPercent: 0,
-  });
-
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    async function fetchCoinData(): Promise<any> {
-      const response = await coingecko.get(`/coins/${id}`, {
-        params: { tickers: false },
-      });
+    coinStore.fetchCoinData(id, currency).catch((err) => console.error(err));
+  }, []);
 
-      const {
-        image: { small: imgSmall },
-        name,
-        symbol,
-        market_data: {
-          current_price: { [currency]: curPrice },
-          price_change_percentage_1h_in_currency: {
-            [currency]: priceChange1hPercent,
-          },
-          price_change_percentage_24h_in_currency: {
-            [currency]: priceChange24hPercent,
-          },
-          price_change_percentage_7d_in_currency: {
-            [currency]: priceChange7dPercent,
-          },
-          price_change_percentage_30d_in_currency: {
-            [currency]: priceChange30dPercent,
-          },
-          price_change_percentage_1y_in_currency: {
-            [currency]: priceChange1yPercent,
-          },
-        },
-      } = response.data;
+  const { name, symbol, imgSmall, curPrice, loading } = coinStore;
 
-      setCoinData({
-        name,
-        symbol,
-        imgSmall,
-        curPrice,
-        priceChange1hPercent,
-        priceChange24hPercent,
-        priceChange7dPercent,
-        priceChange30dPercent,
-        priceChange1yPercent,
-      });
-      setLoading(false);
-    }
-
-    fetchCoinData().catch((err) => err);
-  }, [period]);
-
-  const { name, symbol, imgSmall, curPrice } = coinData;
-
-  const priceChangePercent =
-    coinData[`priceChange${period}Percent` as keyof CoinData];
-
-  const priceChange =
-    (100 * curPrice) / (100 - Number(priceChangePercent)) - curPrice;
+  const priceChangePercent = coinStore.getPriceChangePercent(period);
+  const priceChange = coinStore.getPriceChange(period);
 
   const navigate = useNavigate();
 
@@ -143,7 +71,7 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
         <p
           className={classNames({
             [styles.coin_pricechange]: true,
-            [styles[`coin_pricechange-decrease`]]: priceChange < 0,
+            [styles[`coin_pricechange-decrease`]]: Number(priceChange) < 0,
           })}
         >
           {formatPriceChange(priceChange, 3)}
@@ -155,4 +83,4 @@ function Coin({ id, currency, period }: CoinProps): JSX.Element {
   );
 }
 
-export default Coin;
+export default observer(Coin);

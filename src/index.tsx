@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "@styles/general/index.scss";
 import "@styles/general/variables.scss";
+import "./config/configureMobX";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

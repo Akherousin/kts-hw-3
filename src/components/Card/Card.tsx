@@ -18,8 +18,6 @@ export const Card = ({
   content,
   onClick,
 }: CardProps): JSX.Element => {
-  console.log(styles);
-
   let currentPrice: number | null | string = null;
   let priceChange: number | null | string = null;
   let currency: string = "usd";
