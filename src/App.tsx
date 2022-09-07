@@ -1,6 +1,5 @@
 import CoinPage from "@pages/CoinPage/CoinPage";
 
-import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AllCoinsPage from "@pages/AllCoinsPage/AllCoinsPage";
 

@@ -76,6 +76,12 @@ class CardsListStore {
   setNextPage(): void {
     this.currentPage++;
   }
+
+  setCoins(coins: ICoins[]): void {
+    this.coins = coins;
+  }
 }
 
-export default new CardsListStore();
+const cardsListStore = new CardsListStore();
+
+export default cardsListStore;

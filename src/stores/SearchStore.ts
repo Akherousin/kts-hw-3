@@ -36,6 +36,14 @@ class SearchStore {
     }
   }
 
+  setSearchTerm(term: string): void {
+    this.searchTerm = term;
+  }
+
+  setIsSearchOn(mode: boolean): void {
+    this.isSearchOn = mode;
+  }
+
   onChange(term: string): void {
     this.isSearchOn = false;
     this.searchTerm = term;

@@ -30,6 +30,51 @@ export interface CardListProps {
 
 function CardsList({ vsCurrency, perPage }: CardListProps): JSX.Element {
   useEffect(() => {
+    const savedSearchTerm = window.localStorage.getItem("COINS_APP_searchTerm");
+
+    const savedIsSearchOn = window.localStorage.getItem("COINS_APP_isSearchOn");
+
+    if (
+      typeof savedIsSearchOn === "string" &&
+      typeof savedSearchTerm === "string"
+    ) {
+      searchStore.setSearchTerm(JSON.parse(savedSearchTerm));
+      searchStore.setIsSearchOn(JSON.parse(savedIsSearchOn));
+
+      searchStore
+        .loadSearchResults(JSON.parse(savedSearchTerm))
+        .catch((e) => console.log(e));
+    }
+
+    const coins = window.localStorage.getItem("COINS_APP_coins");
+    if (typeof coins === "string") {
+      cardsListStore.setCoins(JSON.parse(coins));
+
+      cardsListStore
+        .fetchCardsList(vsCurrency, perPage)
+        .catch((e) => console.log(e));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "COINS_APP_searchTerm",
+      JSON.stringify(searchStore.searchTerm)
+    );
+    window.localStorage.setItem(
+      "COINS_APP_isSearchOn",
+      JSON.stringify(searchStore.isSearchOn)
+    );
+  }, [searchStore.searchTerm, searchStore.isSearchOn]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "COINS_APP_coins",
+      JSON.stringify(cardsListStore.coins)
+    );
+  }, [cardsListStore.currentPage]);
+
+  useEffect(() => {
     cardsListStore.fetchCardsList(vsCurrency, perPage).catch((e) => {
       console.log(e);
     });
