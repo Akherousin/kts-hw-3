@@ -37,6 +37,11 @@
     line-height: $line-height-medium;
   }
 
+  &_rank {
+    font-size: $font-size-big;
+    align-self: center;
+  }
+
   &_change {
     font-size: $font-size-small;
     line-height: $line-height-small;
@@ -65,4 +70,5 @@
   text-align: end;
   margin-left: auto;
   margin-right: calc((7.5rem - $card-icon-size) / 2);
+  display: grid;
 }
